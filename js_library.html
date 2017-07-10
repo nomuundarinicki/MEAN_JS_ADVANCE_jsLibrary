@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>JS Library</title>
+  </head>
+  <body>
+      <script>
+        var _ = {
+            map: function(arr, callback) {
+             var result = []
+             for (let i=0; i<arr.length; i++){
+                result.push(callback(arr[i]))
+             }
+             return result
+            },
+            reduce: function(data, callback, memo) {
+             for(let i=0; i < data.length; i++){
+               memo = callback(memo,data[i]);
+             }
+             return memo;
+            },
+            find: function(arr, callback) {
+              for(let i=0; i<arr.length; i++){
+                if(callback(arr[1])){
+                  return arr[i];
+                }
+              }
+            },
+            filter: function(arr, callback) {
+              var result=[]
+              for(let i=0; i<arr.length; i++){
+                if (callback(arr[i])){
+                  result.push(arr[i]);
+                }
+              }
+              return result;
+            },
+            reject: function(arr, callback) {
+              var rejected=[]
+              for (let i=0; i<arr.length; i++){
+                if(!callback(arr[i])){
+                  rejected.push(arr[i]);
+                }
+              }
+              return rejected;
+              }
+            }
+            var mapp = _.map([1,2,3,4,5,6], function(num){return num * 4});
+            console.log(mapp);
+            var reduced = _.reduce([1,2,3], function(memo,num){return memo + num}, 0);
+            console.log(reduced);
+            var found = _.find([1,2,3,4,5], function(num){return num % 2 == 0; });
+            console.log(found);
+            document.write(_.filter([1,2,3,4], function(num){return num % 2 == 0; }));
+            document.write(_.reject([1,2,3,4,5,6], function(num){return num % 2 == 0; }));
+
+      </script>
+  </body>
+</html>
